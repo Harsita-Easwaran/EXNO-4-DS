@@ -31,6 +31,8 @@ df
 ````
 <img width="2533" height="1174" alt="image" src="https://github.com/user-attachments/assets/10b60ad5-5cc4-47f7-84a7-35be08d8017a" />
 
+
+```
 from sklearn.preprocessing import LabelEncoder
 
 df_encoder = df.copy()
@@ -42,9 +44,11 @@ for col in df_encoder.select_dtypes(include="object").columns:
 x = df_encoder.drop("SalStat", axis=1)
 y = df_encoder["SalStat"]
 x
-
+```
 <img width="2135" height="834" alt="image" src="https://github.com/user-attachments/assets/0e3e8a4c-5df2-47f7-844b-5ba91390b39e" />
 
+
+```
 from sklearn.feature_selection import SelectKBest, chi2
 
 chi2_selector = SelectKBest(chi2, k=5)
@@ -57,6 +61,10 @@ mi_scores = pd.Series(chi2_selector.scores_, index=x.columns)
 print(mi_scores.sort_values(ascending=False))
 ```
 <img width="1592" height="507" alt="image" src="https://github.com/user-attachments/assets/39f7466f-781a-4ab8-b043-1a3ba554e539" />
+
+
+
+
 ```
 from sklearn.feature_selection import SelectKBest, f_classif
 
@@ -70,6 +78,11 @@ mi_scores = pd.Series(anova_selector.scores_, index=x.columns)
 print(mi_scores.sort_values(ascending=False))
 ```
 <img width="1550" height="509" alt="image" src="https://github.com/user-attachments/assets/7341f828-a430-4a8f-b1a2-2f833e91a7fb" />
+
+
+
+
+
 ```
 from sklearn.feature_selection import mutual_info_classif
 mi_selector = SelectKBest(mutual_info_classif, k=5)
@@ -82,6 +95,11 @@ mi_scores = pd.Series(mi_selector.scores_, index=x.columns)
 print("\nMutual Information Scores:\n",mi_scores.sort_values(ascending=False))
 ```
 <img width="1697" height="585" alt="image" src="https://github.com/user-attachments/assets/d13e1f4c-e1af-4c6a-9ec5-b72602aa6bb0" />
+
+
+
+
+
 ```
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import RFE
@@ -94,6 +112,12 @@ selected_features_rfe = x.columns[rfe.support_]
 print("Selected features (RFE):", list(selected_features_rfe))
 ```
 <img width="1404" height="217" alt="image" src="https://github.com/user-attachments/assets/1b7a9353-a3bf-4127-a945-b1b2a43a3796" />
+
+
+
+
+
+
 ```
 from sklearn.ensemble import RandomForestClassifier
 
@@ -105,6 +129,13 @@ selected_features_rf = importances.sort_values(ascending=False).head(5).index
 print("Top 5 features (Random Forest Importance):", list(selected_features_rf))
 ```
 <img width="1785" height="68" alt="image" src="https://github.com/user-attachments/assets/588b0e45-3078-4bfd-b39b-45d96a94aad5" />
+
+
+
+
+
+
+
 ```
 from sklearn.linear_model import LassoCV
 import numpy as np
@@ -116,6 +147,12 @@ selected_features_lasso = x.columns[importance > 0]
 print("Selected features (Lasso):", list(selected_features_lasso))
 ```
 <img width="1293" height="60" alt="image" src="https://github.com/user-attachments/assets/0586ffdc-1bbc-4812-830b-10a8855d6367" />
+
+
+
+
+
+
 ```
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import SequentialFeatureSelector
@@ -129,6 +166,12 @@ selected_features_sfs = x.columns[rfe.get_support()]
 print("Selected features (SFS):", list(selected_features_sfs))
 ```
 <img width="1605" height="61" alt="image" src="https://github.com/user-attachments/assets/df67c0f9-53af-403c-9c6e-bcc8665a54af" />
+
+
+
+
+
+
 ```
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
@@ -160,6 +203,11 @@ knn.fit(X_train, y_train)
 
 ```
 <img width="610" height="162" alt="image" src="https://github.com/user-attachments/assets/706cc04a-a5f5-467d-b6e9-71b46f6b5183" />
+
+
+
+
+
 ```
 y_pred = knn.predict(X_test)
 
