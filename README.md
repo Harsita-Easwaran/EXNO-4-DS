@@ -28,9 +28,9 @@ The feature selection techniques used are:
 import pandas as pd
 df=pd.read_csv('income(1) (1).csv')
 df
-```
+````
 <img width="2533" height="1174" alt="image" src="https://github.com/user-attachments/assets/10b60ad5-5cc4-47f7-84a7-35be08d8017a" />
-```
+
 from sklearn.preprocessing import LabelEncoder
 
 df_encoder = df.copy()
@@ -42,9 +42,9 @@ for col in df_encoder.select_dtypes(include="object").columns:
 x = df_encoder.drop("SalStat", axis=1)
 y = df_encoder["SalStat"]
 x
-```
+
 <img width="2135" height="834" alt="image" src="https://github.com/user-attachments/assets/0e3e8a4c-5df2-47f7-844b-5ba91390b39e" />
-```
+
 from sklearn.feature_selection import SelectKBest, chi2
 
 chi2_selector = SelectKBest(chi2, k=5)
